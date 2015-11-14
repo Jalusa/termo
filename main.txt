@@ -2,6 +2,8 @@ close all;
 clear variables;
 clc;
 
+[MistSAT] = fazer_tabela1();
+
 [propIN, data, titulo] = pedir_dados();
 
 hold on;
