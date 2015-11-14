@@ -1,0 +1,65 @@
+function [interpd] = interpol(MistSAT, T0)
+
+prop = { 'Temperatura' 'Pressao sat' 'v_l' 'v_g' 'u_l' 'u_g' 'h_l' 'h_g' 's_l' 's_g'};
+check = false;
+
+for i=1:56
+   if MistSAT{i,1}==T0
+      Propriedades = transpose(MistSAT{i,1:10}); 
+      interpd = table(Propriedades, 'RowNames', prop)
+      check = true;
+      break
+   else
+       i = i+1;
+   end
+end
+
+    if check == false
+
+        TA = ceil(T0);
+
+        bf=false;
+        for s=1:6
+            for j=1:56
+                if MistSAT{j,1}==TA
+                    Propriedades = transpose(MistSAT{j,1:10}); 
+                    Tab2 = table(Propriedades, 'RowNames', prop);
+                    bf = true;
+                    break
+                else
+                    j = j+1;
+                end
+                if bf,break,end
+            end
+            if bf,break,end
+            s = s+1;
+            TA=TA+1;
+        end
+
+        TB = floor(T0);
+
+
+        bf=false;
+        for s=1:6
+            for j=1:56
+                if MistSAT{j,1}==TB
+                    Propriedades = transpose(MistSAT{j,1:10}); 
+                    Tab3 = table(Propriedades, 'RowNames', prop);
+                    bf = true;
+                    break
+                else
+                    j = j+1;
+                end
+                if bf,break,end
+            end
+            if bf,break,end
+            s = s+1;
+            TB=TB-1;
+        end
+        
+        prop1 = Tab3{1:10,1}
+        prop2 = Tab2{1:10, 1}
+
+        interpd = prop2 - ((prop2-prop1)/(TA-TB))*(TA-T0);
+    end
+end
