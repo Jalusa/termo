@@ -3,7 +3,9 @@ function [propIN, data, titulo] = pedir_dados()
     data = zeros(0,0);
     titulo = 0;
 
-    disp('Para deixar qualquer dado em aberto, basta inserir zero.  Obs.: Basta inserir duas delas e, para o caso de nao haver valor de titulo, inserir 2.');
+    disp('Para deixar qualquer dado em aberto, basta inserir zero.');
+    disp('Obs.: Basta inserir duas delas e, para o caso de nao haver');
+    disp('valor de titulo, inserir 2.');
     
     propIN(1) = input('\n Temperatura inicial: ');
         
