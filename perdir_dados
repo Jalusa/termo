@@ -1,0 +1,63 @@
+function [propIN, data, titulo] = pedir_dados()
+    propIN = zeros(1,6);
+    data = zeros(0,0);
+    titulo = 0;
+
+    disp('Para deixar qualquer dado em aberto, basta inserir zero.  Obs.: Basta inserir duas delas e, para o caso de nao haver valor de titulo, inserir 2.');
+    
+    propIN(1) = input('\n Temperatura inicial: ');
+        
+    propIN(2) = input('\n Pressão inicial: ');
+    
+    propIN(3) = input('\n Volume especifico inicial: ');
+    
+    propIN(4) = input('\n Energia interna inicial: ');
+    
+    propIN(5) = input('\n Entalpia inicial: ');
+    
+    propIN(6) = input('\n Entropia inicial: ');
+    
+    titulo = input('\n Titulo: ');
+    
+    %-------------------------------------------------------%
+    
+    if propIN(1) ~= 0
+        disp('\n Voce inseriu temperatura');
+        data = [data 1];
+    end
+    if propIN(2) ~= 0
+        disp('\n Voce inseriu pressao');
+         data = [data 2];
+    end
+    if propIN(3) ~= 0
+        disp('\n Voce inseriu volume especifico');
+         data = [data 3];
+    end
+    if propIN(4) ~= 0
+        disp('\n Voce inseriu energia interna');
+         data = [data 4];
+    end
+    if propIN(5) ~= 0
+        disp('\n Voce inseriu entalpia');
+         data = [data 5];
+    end
+    if propIN(6) ~= 0
+        disp('\n Voce inseriu entropia');
+         data = [data 6];
+    end
+    
+   %-----------------------------------------------------% 
+    
+    if titulo > 0 && titulo < 1
+        disp('\n Regiao de mistura saturada');
+    end
+    if titulo == 1
+        disp('\n Vapor saturado');
+    end
+    if titulo == 0 
+        disp('\n Liquido saturado');
+    end
+    
+    
+    
+end
