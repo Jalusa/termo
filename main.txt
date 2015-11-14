@@ -1,0 +1,7 @@
+close all; 
+clear variables;
+clc;
+
+[propIN, data, titulo] = pedir_dados();
+
+hold on;
