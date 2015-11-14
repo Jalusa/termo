@@ -24,27 +24,27 @@ function [propIN, data, titulo] = pedir_dados()
     %-------------------------------------------------------%
     
     if propIN(1) ~= 0
-        disp('\n Voce inseriu temperatura');
+        disp('Voce inseriu temperatura');
         data = [data 1];
     end
     if propIN(2) ~= 0
-        disp('\n Voce inseriu pressao');
+        disp('Voce inseriu pressao');
          data = [data 2];
     end
     if propIN(3) ~= 0
-        disp('\n Voce inseriu volume especifico');
+        disp('Voce inseriu volume especifico');
          data = [data 3];
     end
     if propIN(4) ~= 0
-        disp('\n Voce inseriu energia interna');
+        disp('Voce inseriu energia interna');
          data = [data 4];
     end
     if propIN(5) ~= 0
-        disp('\n Voce inseriu entalpia');
+        disp('Voce inseriu entalpia');
          data = [data 5];
     end
     if propIN(6) ~= 0
-        disp('\n Voce inseriu entropia');
+        disp('Voce inseriu entropia');
          data = [data 6];
     end
     
