@@ -1,20 +1,20 @@
 function [interpd] = interpol(MistSAT, T0)
 
-prop = { 'Temperatura' 'Pressao sat' 'v_l' 'v_g' 'u_l' 'u_g' 'h_l' 'h_g' 's_l' 's_g'};
-check = false;
+   prop = { 'Temperatura' 'Pressao sat' 'v_l' 'v_g' 'u_l' 'u_g' 'h_l' 'h_g' 's_l' 's_g'};
+   check = false;
 
-for i=1:56
-   if MistSAT{i,1}==T0
-      Propriedades = transpose(MistSAT{i,1:10}); 
-      interpd = table(Propriedades, 'RowNames', prop)
-      check = true;
-      break
-   else
-       i = i+1;
+   for i=1:56
+      if MistSAT{i,1}==T0
+         Propriedades = transpose(MistSAT{i,1:10}); 
+         interpd = table(Propriedades, 'RowNames', prop)
+         check = true;
+         break
+      else
+          i = i+1;
+      end
    end
-end
 
-    if check == false
+   if check == false
 
         TA = ceil(T0);
 
