@@ -6,4 +6,6 @@ clc;
 
 [propIN, data, titulo] = pedir_dados();
 
-hold on;
+[interpd, interpd0] = interpol(MistSAT, propIN(1));
+
+[tab_estado] = checar_estado(interpd, propIN, data);
