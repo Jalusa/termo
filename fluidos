@@ -1,0 +1,45 @@
+function trajetoria
+
+close all;
+clear all;
+clc;
+
+t = 0:0.1:10;
+x0 = 0;
+y0 = 0;
+z0 = 0;
+
+[t,x] = ode45( @trajx, t, x0);
+
+[t,y] = ode45( @trajy, t, y0);
+
+[t,z] = ode45( @trajz, t, z0);
+
+
+subplot(2,2,1);
+plot(t,x);
+xlabel('t'); ylabel('x_1'); title('Trajetoria em x_1');
+subplot(2,2,2);
+plot(t,y);
+xlabel('t'); ylabel('x_2'); title('Trajetoria em x_2');
+subplot(2,2,3);
+plot(t,z);
+xlabel('t'); ylabel('x_3'); title('Trajetoria em x_3');
+
+
+
+
+    function dxdt = trajx(t,x)
+        dxdt = (cos(5*x^2))^2 + sin(x^3);
+    end
+
+    function dydt = trajy(t,y)
+        dydt = (sin(5*y)) + cos(y);
+    end
+
+    function dzdt = trajz(t,z)
+        dzdt = 1;
+    end
+    
+    
+end
