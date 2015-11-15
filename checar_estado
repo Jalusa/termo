@@ -1,0 +1,26 @@
+function [tab_estado] = checar_estado(interpd, propIN, data)
+
+    
+    if data(2) == 2
+        if propIN(2) > interpd{2,1}
+            disp('O estado e de liquido comprimido e sera aproximado por mistura saturada');
+            tab_estado = interpd;
+        end
+        
+        if propIN(2) == interpd{2,1}
+            disp('O estado e de mistura saturada');
+            tab_estado = interpd;
+        end
+        
+        if propIN(2) < interpd{2,1}
+            disp('O estado e de vapor superaquecido');
+            tab_estado = 2;
+            % tab = fazer funcao para checar tabela de vapor;
+        end
+    else
+        tab_estado = 0;
+    end
+        
+end
+
+  
