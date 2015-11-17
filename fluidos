@@ -1,33 +1,57 @@
-function trajetoria
+function fluidos
 
 close all;
 clear all;
 clc;
 
 t = 0:0.1:10;
-x0 = 0;
-y0 = 0;
-z0 = 0;
+i=0;
 
-[t,x] = ode45( @trajx, t, x0);
+for i = 0:4
+    
+    if i == 0
+          titulo = 'trajetoria1.png';
+    end
+    if i == 1
+          titulo = 'trajetoria2.png';
+    end
+    if i == 2
+          titulo = 'trajetoria3.png';
+    end
+    if i == 3
+          titulo = 'trajetoria4.png';
+    end
+    if i == 4
+          titulo = 'trajetoria5.png';
+    end
+    
+    x0 = i;
+    y0 = i;
+    z0 = i;
 
-[t,y] = ode45( @trajy, t, y0);
+    [t,x] = ode45( @trajx, t, x0);
 
-[t,z] = ode45( @trajz, t, z0);
+    [t,y] = ode45( @trajy, t, y0);
 
-
-subplot(2,2,1);
-plot(t,x);
-xlabel('t'); ylabel('x_1'); title('Trajetoria em x_1');
-subplot(2,2,2);
-plot(t,y);
-xlabel('t'); ylabel('x_2'); title('Trajetoria em x_2');
-subplot(2,2,3);
-plot(t,z);
-xlabel('t'); ylabel('x_3'); title('Trajetoria em x_3');
+    [t,z] = ode45( @trajz, t, z0);
 
 
+    figure
+    subplot(2,2,1);
+    plot(t,x);
+    xlabel('t'); ylabel('x_1'); title('Trajetoria em x_1');
+    subplot(2,2,2);
+    plot(t,y);
+    xlabel('t'); ylabel('x_2'); title('Trajetoria em x_2');
+    subplot(2,2,3);
+    plot(t,z);
+    xlabel('t'); ylabel('x_3'); title('Trajetoria em x_3');
+    
 
+    saveas(gcf,titulo)
+    
+    close all;
+end
 
     function dxdt = trajx(t,x)
         dxdt = (cos(5*x^2))^2 + sin(x^3);
@@ -40,6 +64,4 @@ xlabel('t'); ylabel('x_3'); title('Trajetoria em x_3');
     function dzdt = trajz(t,z)
         dzdt = 1;
     end
-    
-    
 end
