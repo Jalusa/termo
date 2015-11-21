@@ -1,7 +1,7 @@
 function coico
 
-ft = linspace(0,10,100); % Generate t for f
-f = ft; % Generate f(t)
+ft = linspace(0,10,100);
+f = ft; 
 
 for i = 0:4
     
@@ -23,9 +23,9 @@ for i = 0:4
 
 Tspan = [0 5]; 
 IC = i;
-[T1, Y] = ode45(@(t,y) myodey(t,y,ft,f),Tspan,IC); % Solve ODE
-[T2, X] = ode45(@(t,x) myodex(t,x,ft,f),Tspan,IC); % Solve ODE
-[T3, Z] = ode45(@(t,z) myodez(t,z,ft,f),Tspan,IC); % Solve ODE
+[T1, Y] = ode45(@(t,y) myodey(t,y,ft,f),Tspan,IC); 
+[T2, X] = ode45(@(t,x) myodex(t,x,ft,f),Tspan,IC); 
+[T3, Z] = ode45(@(t,z) myodez(t,z,ft,f),Tspan,IC); 
 
 
 
@@ -47,18 +47,18 @@ figure
 end
 
 function dydt = myodey(t,y,ft,f)
-f = interp1(ft,f,t); % Interpolate the data set (ft,f) at time t
-dydt = -f.*(y.^2) + y.^4 + y.^6; % Evaluate ODE at time t
+f = interp1(ft,f,t); 
+dydt = -f.*(y.^2) + y.^4 + y.^6; 
 end
 
 function dxdt = myodex(t,x,ft,f)
-f = interp1(ft,f,t); % Interpolate the data set (ft,f) at time t
-dxdt = -f.*x + x.^3 + x; % Evaluate ODE at time t
+f = interp1(ft,f,t); 
+dxdt = -f.*x + x.^3 + x; 
 end
 
 function dzdt = myodez(t,z,ft,f)
-f = interp1(ft,f,t); % Interpolate the data set (ft,f) at time t
-dzdt = z; % Evaluate ODE at time t
+f = interp1(ft,f,t);
+dzdt = z; 
 end
 
 end
