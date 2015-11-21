@@ -1,11 +1,7 @@
-function fluidos
+function coico
 
-close all;
-clear all;
-clc;
-
-t = 0:0.1:10;
-i=0;
+ft = linspace(0,10,100); % Generate t for f
+f = ft; % Generate f(t)
 
 for i = 0:4
     
@@ -24,27 +20,24 @@ for i = 0:4
     if i == 4
           titulo = 'trajetoria5.png';
     end
-    
-    x0 = i;
-    y0 = i;
-    z0 = i;
 
-    [t,x] = ode45( @trajx, t, x0);
-
-    [t,y] = ode45( @trajy, t, y0);
-
-    [t,z] = ode45( @trajz, t, z0);
+Tspan = [0 5]; 
+IC = i;
+[T1, Y] = ode45(@(t,y) myodey(t,y,ft,f),Tspan,IC); % Solve ODE
+[T2, X] = ode45(@(t,x) myodex(t,x,ft,f),Tspan,IC); % Solve ODE
+[T3, Z] = ode45(@(t,z) myodez(t,z,ft,f),Tspan,IC); % Solve ODE
 
 
-    figure
+
+figure
     subplot(2,2,1);
-    plot(t,x);
+    plot(T2,X);
     xlabel('t'); ylabel('x_1'); title('Trajetoria em x_1');
     subplot(2,2,2);
-    plot(t,y);
+    plot(T1,Y);
     xlabel('t'); ylabel('x_2'); title('Trajetoria em x_2');
     subplot(2,2,3);
-    plot(t,z);
+    plot(T3,Z);
     xlabel('t'); ylabel('x_3'); title('Trajetoria em x_3');
     
 
@@ -53,15 +46,19 @@ for i = 0:4
     close all;
 end
 
-    function dxdt = trajx(t,x)
-        dxdt = (cos(5*x^2))^2 + sin(x^3);
-    end
+function dydt = myodey(t,y,ft,f)
+f = interp1(ft,f,t); % Interpolate the data set (ft,f) at time t
+dydt = -f.*(y.^2) + y.^4 + y.^6; % Evaluate ODE at time t
+end
 
-    function dydt = trajy(t,y)
-        dydt = (sin(5*y)) + cos(y);
-    end
+function dxdt = myodex(t,x,ft,f)
+f = interp1(ft,f,t); % Interpolate the data set (ft,f) at time t
+dxdt = -f.*x + x.^3 + x; % Evaluate ODE at time t
+end
 
-    function dzdt = trajz(t,z)
-        dzdt = 1;
-    end
+function dzdt = myodez(t,z,ft,f)
+f = interp1(ft,f,t); % Interpolate the data set (ft,f) at time t
+dzdt = z; % Evaluate ODE at time t
+end
+
 end
