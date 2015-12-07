@@ -1,4 +1,4 @@
-function [] =()
+function [superaqTAB] = fazer_tabela2()
 
   if propIN(2) = 0.06
     TempIN = [-36.95; -20; -10; 0; 10; 20; 30; 40; 50; 60; 70; 80; 90; 100];
