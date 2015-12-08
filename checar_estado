@@ -14,13 +14,43 @@ function [tab_estado] = checar_estado(interpd, propIN, data)
         
         if propIN(2) < interpd{2,1}
             disp('O estado e de vapor superaquecido');
-            tab_estado = 2;
+            tab_estado = [2 3 4 5];
             % tab = fazer funcao para checar tabela de vapor;
         end
-    else
-        tab_estado = 0;
+       
     end
+    
+    if data(2) == 3
+        i = 3;
+    end
+    if data(2) == 5
+        i = 4;
+    end
+    if data(2) == 7
+        i = 5;
+    end
+    if data(2) == 9
+        i = 6;
+    end
+    
+    if data(2) ~= 2
+         if propIN(i) < interpd{data(2),1}
+             disp('O estado e de liquido comprimido e sera aproximado por mistura saturada');
+            tab_estado = interpd;
+         end
+         
+         if propIN(i) >= interpd{data(2),1} && propIN(i) <= interpd{data(3),1}
+             disp('O estado e de mistura saturada');
+            tab_estado = interpd;
+         end
         
+          if propIN(i) > interpd{data(3),1}
+            disp('O estado e de vapor superaquecido');
+            tab_estado = [2 3 4 5];
+            % tab = fazer funcao para checar tabela de vapor;
+        end   
+             
+    end
 end
 
   
