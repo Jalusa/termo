@@ -1,11 +1,16 @@
-close all; 
-clear variables;
-clc;
+hu3 = s
+while hu3 == 's'
+    close all; 
+    clear variables;
+    clc;
 
-[MistSAT] = fazer_tabela1();
+    [MistSAT] = fazer_tabela1();
 
-[propIN, data, titulo] = pedir_dados();
+    [propIN, data, titulo] = pedir_dados();
 
-[interpd, interpd0] = interpol(MistSAT, propIN(1));
+    [interpd, interpd0] = interpol(MistSAT, propIN(1));
 
-[tab_estado] = checar_estado(interpd, propIN, data);
+    [tab_estado] = checar_estado(interpd, propIN, data);
+    
+    hu3 = input('De novo? ');
+end
